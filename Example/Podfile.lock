@@ -1,0 +1,16 @@
+PODS:
+  - LQGConstant (1.0.0)
+
+DEPENDENCIES:
+  - LQGConstant (from `../`)
+
+EXTERNAL SOURCES:
+  LQGConstant:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LQGConstant: b9ae6c85b3cb0dd41ec1c77277a77970f6ec984b
+
+PODFILE CHECKSUM: faa568838ce7ddad245a7bee8bda2f9443e49b7c
+
+COCOAPODS: 1.11.2

@@ -1,0 +1,47 @@
+
+# 源
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 平台
+platform :ios, '11.0'
+
+# 忽略警告
+inhibit_all_warnings!
+
+# 使用framework
+use_frameworks!
+
+# 三方库
+def thirdPods
+
+end
+
+# 基础层
+def basePods
+  # 常量
+  pod 'LQGConstant', :path => '../'
+end
+
+targets = ['LQGConstant_Example']
+
+targets.each do |t|
+  target t do
+    thirdPods
+    basePods
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 11.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
+    end
+  end
+end
